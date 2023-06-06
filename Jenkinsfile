@@ -38,7 +38,9 @@ def buildNotify(currentBuild, version, branchType) {
     def redColor = "#DE0000"
 
     def subject = "`[CMS]` v${version}"
+    def summary = 'summary'
 
+    def channel = 'channel'
 
     // Override default values based on build status
     if (buildStatus == 'STARTED') {
