@@ -113,7 +113,7 @@ node {
         }
         else if (branchType && tag) {
             stage('Build image') {
-                docker.withRegistry('', 'dockerhub-jenkins'){
+                docker.withRegistry('https://hub.docker.com/', 'dockerhub-jenkins'){
                     app = docker.build("${image}:${tag}")
                 }
             }
