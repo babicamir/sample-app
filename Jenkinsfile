@@ -166,7 +166,9 @@ node {
         //     }
         // }
 
-    // } catch (e) {
+    } 
+    
+    // catch (e) {
     //     currentBuild.result = "FAILURE"
     //     throw e
     // } finally {
