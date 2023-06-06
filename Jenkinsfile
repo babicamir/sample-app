@@ -127,44 +127,44 @@ node {
             }
         }
 
-        stage('Deploy'){
-            def environment
+        // stage('Deploy'){
+        //     def environment
 
-            if (branchType == 'DEV'){
-                environment = 'dev'
-            } else if (branchType == 'QA'){
-                environment = 'qa'
-            } else if (branchType == 'STAGE'){
-                environment = 'stage'
-            } else if (branchType == 'PRODUCTION'){
-                environment = 'prod'
-            }
+        //     if (branchType == 'DEV'){
+        //         environment = 'dev'
+        //     } else if (branchType == 'QA'){
+        //         environment = 'qa'
+        //     } else if (branchType == 'STAGE'){
+        //         environment = 'stage'
+        //     } else if (branchType == 'PRODUCTION'){
+        //         environment = 'prod'
+        //     }
 
-            if (environment && tag) {
-                withEnv(['AWS_REGION=us-east-1', 'AWS_DEFAULT_REGION=us-east-1']) {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'checkedup-aws',
-                                    accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        ansiblePlaybook(
-                            playbook: 'ansible/main.yml',
-                            extraVars: [env: environment, image: "${image}:${tag}"]
-                        )
+        //     if (environment && tag) {
+        //         withEnv(['AWS_REGION=us-east-1', 'AWS_DEFAULT_REGION=us-east-1']) {
+        //             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'checkedup-aws',
+        //                             accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        //                 ansiblePlaybook(
+        //                     playbook: 'ansible/main.yml',
+        //                     extraVars: [env: environment, image: "${image}:${tag}"]
+        //                 )
 
-                        if (environment == 'prod') {
-                            ansiblePlaybook(
-                                playbook: 'ansible/main.yml',
-                                extraVars: [env: 'demo', image: "${image}:${tag}"]
-                            )
-                        }
-                    }
-                }
-            }
-        }
+        //                 if (environment == 'prod') {
+        //                     ansiblePlaybook(
+        //                         playbook: 'ansible/main.yml',
+        //                         extraVars: [env: 'demo', image: "${image}:${tag}"]
+        //                     )
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Update Database'){
-            if (branchType == 'STAGE'){
-                build('CMS-DB/Stage DB')
-            }
-        }
+        // stage('Update Database'){
+        //     if (branchType == 'STAGE'){
+        //         build('CMS-DB/Stage DB')
+        //     }
+        // }
 
     } catch (e) {
         currentBuild.result = "FAILURE"
