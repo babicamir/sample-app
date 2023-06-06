@@ -166,10 +166,10 @@ node {
         //     }
         // }
 
-    } catch (e) {
-        currentBuild.result = "FAILURE"
-        throw e
-    } finally {
-        buildNotify(currentBuild, version, branchType)
-    }
+    // } catch (e) {
+    //     currentBuild.result = "FAILURE"
+    //     throw e
+    // } finally {
+    //     buildNotify(currentBuild, version, branchType)
+    // }
 }
