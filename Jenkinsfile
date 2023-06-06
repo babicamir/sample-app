@@ -56,10 +56,10 @@ def buildNotify(currentBuild, version, branchType) {
 
     // disable notifications for successful DEV builds
 
-    // Send notifications
-    withCredentials(bindings: [string(credentialsId: channel, variable: 'HOOK_URL')]) {
-        office365ConnectorSend color: colorCode, message: summary, status: buildStatus, webhookUrl: "${HOOK_URL}"
-    }
+    // // Send notifications
+    // withCredentials(bindings: [string(credentialsId: channel, variable: 'HOOK_URL')]) {
+    //     office365ConnectorSend color: colorCode, message: summary, status: buildStatus, webhookUrl: "${HOOK_URL}"
+    // }
 }
 
 
