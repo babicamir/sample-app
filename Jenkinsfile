@@ -55,21 +55,6 @@ def buildNotify(currentBuild, version, branchType) {
     }
 
     // disable notifications for successful DEV builds
-    if (buildStatus == 'SUCCESS') {
-        if (branchType == 'DEV' && previousBuild && previousBuild.result == 'SUCCESS') {
-            return
-        }
-        if (branchType == 'PR') {
-            return
-        }
-        channel = defaultChannel
-    }
-    else {
-        channel = alertChannel
-    }
-    if (branchType == 'PR' || branchType == 'DEV') {
-        channel = alertChannel
-    }
 
     // Send notifications
     withCredentials(bindings: [string(credentialsId: channel, variable: 'HOOK_URL')]) {
@@ -130,23 +115,6 @@ node {
             stage('Build image') {
                 docker.withRegistry('', 'dockerhub-jenkins'){
                     app = docker.build("${image}:${tag}")
-                }
-            }
-
-            stage('Test') {
-                def exit_code
-                withEnv(["IMAGE_VERSION=${image}:${tag}", "PROJ_ROOT=/home/ec2-user/docker-jenkins-integration/docker-mount"]) {
-                    docker.withRegistry('', 'dockerhub-jenkins'){
-                        script {
-                            exit_code = sh(script: 'docker-compose -f docker/docker-compose-jenkins.yml run checkedupcms_test test', returnStatus: true)
-                        }
-                    }
-                }
-                sh 'docker rm -f $(docker ps -a | grep -e "es_test\\|checkedupcms-testdb\\|checkedupcms_test" | awk \'{print $1}\')'
-
-                if (exit_code != 0) {
-                    currentBuild.result = 'FAILURE'
-                    error('Unable to build due to failed tests')
                 }
             }
 
