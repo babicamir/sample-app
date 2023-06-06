@@ -24,43 +24,43 @@ def getBranchType(branchName, tagName) {
 }
 
 
-def buildNotify(currentBuild, version, branchType) {
-    // build status of null means successful
-    def buildStatus =  currentBuild.result ?: 'SUCCESS'
-    def previousBuild = currentBuild.previousBuild
+// def buildNotify(currentBuild, version, branchType) {
+//     // build status of null means successful
+//     def buildStatus =  currentBuild.result ?: 'SUCCESS'
+//     def previousBuild = currentBuild.previousBuild
 
-    // Default values
-    def defaultChannel = 'jenkins-release-updates'
-    def alertChannel = 'jenkins-release-alerts'
-    def colorCode = '#FF0000'
-    def greenColor = "#3BCF00"
-    def yellowColor = "#BFC14C"
-    def redColor = "#DE0000"
+//     // Default values
+//     def defaultChannel = 'jenkins-release-updates'
+//     def alertChannel = 'jenkins-release-alerts'
+//     def colorCode = '#FF0000'
+//     def greenColor = "#3BCF00"
+//     def yellowColor = "#BFC14C"
+//     def redColor = "#DE0000"
 
-    def subject = "`[CMS]` v${version}"
-    def summary = 'summary'
+//     def subject = "`[CMS]` v${version}"
+//     def summary = 'summary'
 
-    def channel = 'channel'
+//     def channel = 'channel'
 
-    // Override default values based on build status
-    if (buildStatus == 'STARTED') {
-        colorCode = yellowColor
-        summary = "${subject} Started Release to `${branchType}`"
-    } else if (buildStatus == 'SUCCESS') {
-        colorCode = greenColor
-        summary = "${subject} Successfully Released to `${branchType}`"
-    } else {
-        colorCode = redColor
-        summary = "${subject} Unable to Release to `${branchType}`"
-    }
+//     // Override default values based on build status
+//     if (buildStatus == 'STARTED') {
+//         colorCode = yellowColor
+//         summary = "${subject} Started Release to `${branchType}`"
+//     } else if (buildStatus == 'SUCCESS') {
+//         colorCode = greenColor
+//         summary = "${subject} Successfully Released to `${branchType}`"
+//     } else {
+//         colorCode = redColor
+//         summary = "${subject} Unable to Release to `${branchType}`"
+//     }
 
-    // disable notifications for successful DEV builds
+//     // disable notifications for successful DEV builds
 
-    // // Send notifications
-    // withCredentials(bindings: [string(credentialsId: channel, variable: 'HOOK_URL')]) {
-    //     office365ConnectorSend color: colorCode, message: summary, status: buildStatus, webhookUrl: "${HOOK_URL}"
-    // }
-}
+//     // // Send notifications
+//     // withCredentials(bindings: [string(credentialsId: channel, variable: 'HOOK_URL')]) {
+//     //     office365ConnectorSend color: colorCode, message: summary, status: buildStatus, webhookUrl: "${HOOK_URL}"
+//     // }
+// }
 
 
 node {
