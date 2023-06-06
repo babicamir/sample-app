@@ -118,13 +118,13 @@ node {
                 }
             }
 
-            if (branchType != 'PR') {
-                stage('Push image'){
-                    docker.withRegistry('', 'dockerhub-jenkins'){
-                        app.push(tag)
-                    }
-                }
-            }
+            // if (branchType != 'PR') {
+            //     stage('Push image'){
+            //         docker.withRegistry('', 'dockerhub-jenkins'){
+            //             app.push(tag)
+            //         }
+            //     }
+            // }
         }
 
         // stage('Deploy'){
