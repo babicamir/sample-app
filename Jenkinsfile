@@ -100,7 +100,7 @@ node {
         }
 
         if (branchType == 'PRODUCTION') {
-            docker.withRegistry('', 'dockerhub-jenkins'){
+            docker.withRegistry('', 'laptopamir'){
                 stage('Get image'){
                     app = docker.image("${image}:${tag}")
                     // to be sure that this image exists
@@ -113,7 +113,7 @@ node {
         }
         else if (branchType && tag) {
             stage('Build image') {
-                docker.withRegistry('', 'dockerhub-jenkins'){
+                docker.withRegistry('', 'laptopamir'){
                     app = docker.build("${image}:${tag}")
                 }
             }
