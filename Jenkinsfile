@@ -124,8 +124,10 @@ node {
             }
 
             stage('AWS') {
-                withAWS(credentials:'stg') {
-                    aws s3 ls
+                withAWS(credentials:'stg', region:'us-east-2') {
+                    def images = ecrListImages(repositoryName: 'checkedup-stg-cms')
+                    def login = ecrLogin()
+                    sh "docker list images"
                     // do something
                 }
             }
