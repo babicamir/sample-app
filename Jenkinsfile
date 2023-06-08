@@ -71,7 +71,7 @@ def buildNotify(currentBuild, version, branchType) {
 node {
     def app
     def branchType
-    def image = "laptopamir/cms"
+    def image = "checkedup-stg-cms"
     def tag
     def version
 
