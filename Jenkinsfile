@@ -144,9 +144,9 @@ node {
 
                 sh "aws s3 ls"
                 sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
-                jsonfile = readJSON file: 'checkedup-stg-cms.json'
+                jsonfile = readJSON file: './checkedup-stg-cms.json'
                 jsonfile['taskDefinition.taskDefinitionArn'] = 'ENV2'
-                writeJSON file: 'checkedup-stg-cms.json', json: jsonfile
+                writeJSON file: './checkedup-stg-cms.json', json: jsonfile
                 sh "cat ./checkedup-stg-cms.json"
 
             }
