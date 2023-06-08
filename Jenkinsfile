@@ -66,7 +66,7 @@ def buildNotify(currentBuild, version, branchType) {
 node {
     def app
     def branchType
-    def image = "checkedup/cms"
+    def image = "laptopamir/cms"
     def tag
     def version
 
@@ -118,13 +118,13 @@ node {
                 }
             }
 
-            // if (branchType != 'PR') {
-            //     stage('Push image'){
-            //         docker.withRegistry('', 'dockerhub-jenkins'){
-            //             app.push(tag)
-            //         }
-            //     }
-            // }
+            if (branchType != 'PR') {
+                stage('Push image'){
+                    docker.withRegistry('', 'laptopamir'){
+                        app.push(tag)
+                    }
+                }
+            }
         }
 
         // stage('Deploy'){
