@@ -117,29 +117,30 @@ node {
             }
         }
         else if (branchType && tag) {
-            // stage('Build image') {
-            //     docker.withRegistry('', 'laptopamir'){
-            //         app = docker.build("${image}:${tag}")
-            //     }
-            // }
-
-            stage('Docker login') {
-                withAWS(credentials:'stg', region:'us-east-2') {
-
-                    sh "echo login----------------------- "
-                    def login = ecrLogin()
-                    sh "echo login22222222222222222222----------------------- "
-                    sh "aws s3 ls"
-                    sh "docker build -t checkedup-stg-cms ."
-                    sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-                    sh "aws s3 ls"
-                    
-                    sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-
-
-                    // do something
+            stage('Build image') {
+                //docker.withRegistry('', 'laptopamir'){
+                docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
+                    app = docker.build("${image}:${tag}")
                 }
             }
+
+            // stage('Docker login') {
+            //     withAWS(credentials:'stg', region:'us-east-2') {
+
+            //         sh "echo login----------------------- "
+            //         def login = ecrLogin()
+            //         sh "echo login22222222222222222222----------------------- "
+            //         sh "aws s3 ls"
+            //         sh "docker build -t checkedup-stg-cms ."
+            //         sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
+            //         sh "aws s3 ls"
+                    
+            //         sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
+
+
+            //         // do something
+            //     }
+            // }
 
 
 
