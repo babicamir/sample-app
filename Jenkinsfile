@@ -120,79 +120,10 @@ node {
             stage('Build image2') {
                 docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
                     app = docker.build("${image}:${tag}")
-
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
-
-
                 }
             }
-
-            // stage('Docker login') {
-            //     withAWS(credentials:'stg', region:'us-east-2') {
-
-            //         sh "echo login----------------------- "
-            //         def login = ecrLogin()
-            //         sh "echo login22222222222222222222----------------------- "
-            //         sh "aws s3 ls"
-            //         sh "docker build -t checkedup-stg-cms ."
-            //         sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-            //         sh "aws s3 ls"
-                    
-            //         sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-
-
-            //         // do something
-            //     }
-            // }
-
-
-
-            // stage('AWS') {
-            //     withAWS(credentials:'stg', region:'us-east-2') {
-
-            //         sh "docker images list"
-
-                    
-            //         sh "docker build -t checkedup-stg-cms ."
-            //         sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-            //         def login = ecrLogin()
-            //         sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 224768844765.dkr.ecr.us-east-2.amazonaws.com"
-            //         sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-            //         def images = ecrListImages(repositoryName: 'checkedup-stg-cms')
-
-            //         // do something
-            //     }
-            // }
-
-
-
-
-            // stage('Logging into AWS ECR') {
-            //     steps {
-            //         script {
-            //             sh "aws ecr get-login-password - region ${AWS_DEFAULT_REGION} | docker login - username AWS - password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
-            //         }
-                
-            //     }
-            // }
-
-
-
-            if (branchType != 'PR') {
-                stage('Push image'){
-                    docker.withRegistry('', 'laptopamir'){
-                        app.push(tag)
-                    }
-                }
-            }
-
-
-
-
-
-
-
         }
 
         // stage('Deploy'){
