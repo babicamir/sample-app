@@ -129,10 +129,12 @@ node {
                     sh "echo login----------------------- "
                     def login = ecrLogin()
                     sh "echo login22222222222222222222----------------------- "
+                    sh "aws s3 ls"
                     sh "docker build -t checkedup-stg-cms ."
                     sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-                    sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 224768844765.dkr.ecr.us-east-2.amazonaws.com"
-                    sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
+                    sh "aws s3 ls"
+                    //sh "aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 224768844765.dkr.ecr.us-east-2.amazonaws.com"
+                    //sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
 
 
                     // do something
