@@ -105,7 +105,7 @@ node {
         }
 
         if (branchType == 'PRODUCTION') {
-            docker.withRegistry('', 'laptopamir'){
+            docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
                 stage('Get image'){
                     app = docker.image("${image}:${tag}")
                     // to be sure that this image exists
