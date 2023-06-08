@@ -126,7 +126,7 @@ node {
             stage('Docker login') {
                 withAWS(credentials:'stg', region:'us-east-2') {
 
-                    sh "docker images list"
+                    sh "echo login----------------------- "
                     def login = ecrLogin()
 
 
