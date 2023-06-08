@@ -128,6 +128,10 @@ node {
 
                     sh "echo login----------------------- "
                     def login = ecrLogin()
+                    sh "echo login22222222222222222222----------------------- "
+                    sh "docker build -t checkedup-stg-cms ."
+                    sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
+                    sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
 
 
                     // do something
