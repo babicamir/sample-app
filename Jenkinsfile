@@ -1,5 +1,10 @@
 #!groovy
+environment {
+        AWS_DEFAULT_REGION = 'us-east-2'
+        AWS_ACCOUNT_ID = '224768844765'
 
+
+}
 
 def getBranchType(branchName, tagName) {
     def devPattern = ".*dev"
@@ -118,6 +123,27 @@ node {
                 }
             }
 
+            stage('AWS') {
+                withAWS(credentials:'stg') {
+                    aws s3 ls
+                    // do something
+                }
+            }
+
+
+
+
+            // stage('Logging into AWS ECR') {
+            //     steps {
+            //         script {
+            //             sh "aws ecr get-login-password - region ${AWS_DEFAULT_REGION} | docker login - username AWS - password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+            //         }
+                
+            //     }
+            // }
+
+
+
             if (branchType != 'PR') {
                 stage('Push image'){
                     docker.withRegistry('', 'laptopamir'){
@@ -125,6 +151,13 @@ node {
                     }
                 }
             }
+
+
+
+
+
+
+
         }
 
         // stage('Deploy'){
