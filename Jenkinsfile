@@ -126,7 +126,6 @@ node {
             stage('AWS') {
                 withAWS(credentials:'stg', region:'us-east-2') {
 
-                    def login = ecrLogin()
                     sh "docker images list"
                     
                     sh "docker build -t checkedup-stg-cms ."
