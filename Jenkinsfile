@@ -138,10 +138,14 @@ node {
 
 
         stage('Deploy') {
-            withAWS(credentials:'stg', region:'us-east-2') {
-                sh "aws s3 ls"
+ 
 
+
+            withCredentials([string(credentialsId: 'stg', region:'us-east-2')]) {
+                sh "aws s3 ls"
             }
+
+
         }
 
 
