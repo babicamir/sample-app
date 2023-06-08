@@ -141,7 +141,7 @@ node {
  
 
 
-            withCredentials([string(credentialsId: 'stg', region:'us-east-2')]) {
+            withCredentials([string(credentialsId: 'stg')]) {
                 sh "aws s3 ls"
             }
 
