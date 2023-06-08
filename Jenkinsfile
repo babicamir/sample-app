@@ -126,6 +126,32 @@ node {
             }
         }
 
+        else if (branchType && tag) {
+            stage('Build image2') {
+                docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
+                    app = docker.build("${image}:${tag}")
+                    app.push("${tag}")
+                    app.push("latest")
+                }
+            }
+        }
+
+
+        stage('Deploy') {
+            withAWS(credentials:'stg', region:'us-east-2') {
+                sh "aws s3 ls"
+
+            }
+        }
+
+
+
+
+
+// aws ecs update-service --cluster my-cluster --service dummy-api-service --force-new-deployment --region eu-central-1
+
+
+
         // stage('Deploy'){
         //     def environment
 
