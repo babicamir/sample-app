@@ -117,8 +117,7 @@ node {
             }
         }
         else if (branchType && tag) {
-            stage('Build image') {
-                //docker.withRegistry('', 'laptopamir'){
+            stage('Build image2') {
                 docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
                     app = docker.build("${image}:${tag}")
                 }
