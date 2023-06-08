@@ -141,7 +141,7 @@ node {
  
 
 
-            withCredentials([string(credentialsId: 'stg')]) {
+            withCredentials([string($class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'stg')]) {
                 sh "aws s3 ls"
             }
 
