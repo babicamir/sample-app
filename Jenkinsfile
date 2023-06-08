@@ -120,6 +120,11 @@ node {
             stage('Build image2') {
                 docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
                     app = docker.build("${image}:${tag}")
+
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+
+
                 }
             }
 
