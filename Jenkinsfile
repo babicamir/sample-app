@@ -117,11 +117,11 @@ node {
             }
         }
         else if (branchType && tag) {
-            stage('Build image') {
-                docker.withRegistry('', 'laptopamir'){
-                    app = docker.build("${image}:${tag}")
-                }
-            }
+            // stage('Build image') {
+            //     docker.withRegistry('', 'laptopamir'){
+            //         app = docker.build("${image}:${tag}")
+            //     }
+            // }
 
             stage('AWS') {
                 withAWS(credentials:'stg', region:'us-east-2') {
@@ -130,7 +130,7 @@ node {
                     
                     sh "docker build -t checkedup-stg-cms ."
                     sh "docker tag checkedup-stg-cms:latest 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
-                    def login = ecrLogin(registryIds: '224768844765.dkr.ecr.us-east-2.amazonaws.com')
+                    def login = ecrLogin()
                     sh "docker push 224768844765.dkr.ecr.us-east-2.amazonaws.com/checkedup-stg-cms:${tag}"
                     def images = ecrListImages(repositoryName: 'checkedup-stg-cms')
 
