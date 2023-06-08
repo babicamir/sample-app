@@ -137,17 +137,16 @@ node {
         }
 
 
-        stage('Deploy') {
- 
+        stage('Docker login') {
+            withAWS(credentials:'stg', region:'us-east-2') {
 
-
-            withCredentials([string($class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'stg')]) {
+                sh "echo login----------------------- "
+                def login = ecrLogin()
+                sh "echo login22222222222222222222----------------------- "
                 sh "aws s3 ls"
+
             }
-
-
         }
-
 
 
 
