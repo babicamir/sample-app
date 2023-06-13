@@ -141,11 +141,14 @@ node {
             withAWS(credentials:'stg', region:'us-east-2') {
 
                 sh "echo Updating ECS service"
-                
-                // sh "aws s3 ls"
-                sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
-                sh "ls"
-                sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
+                TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition checkedup-stg-cms --region "us-east-1")
+                sh "echo $TASK_DEFINITION"
+                // sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
+                // sh "ls"
+                // sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
+ 
+
+
 
                 // sh "cat checkedup-stg-cms.json"
                 // sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json > checkedup-stg-cms.json"
