@@ -149,7 +149,14 @@ node {
                 sh "cat checkedup-stg-cms.json"
                 sh "ls"
                 sh "pwd"
-                sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
+                sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
+
+
+
+                aws ecs register-task-definition — family ${task-definition-name} — region=”ap-southeast-2" — cli-input-json file://task-def.json
+
+
+
                 // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
                 // sh "cat ./checkedup-stg-cms.json"
                 // TASK_DEFINITION = sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms"
