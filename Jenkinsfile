@@ -155,7 +155,7 @@ node {
                 sh "cat checkedup-stg-cms.json"
                 sh "ls"
                 sh "echo 222222222222222222222222222222222222222222222222222222222222222222"
-                sh "cat checkedup-stg-cms.json"
+                sh "cat ./checkedup-stg-cms.json"
                 // sh "ls"
                 // sh "pwd"
                 // sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
