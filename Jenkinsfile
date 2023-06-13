@@ -137,67 +137,10 @@ node {
         // }
 
 
-        stage('Docker login') {
+        stage('Update ECS service') {
             withAWS(credentials:'stg', region:'us-east-2') {
-
                 sh "echo Updating ECS service"
-                
-                // sh "aws s3 ls"
-                sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
-                sh "jq .taskDefinition.revision checkedup-stg-cms.json"
-                // sh "ls"
-                // sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
- 
-                GIT_COMMIT_EMAIL = sh (script: 'jq .taskDefinition.revision checkedup-stg-cms.json')
-                echo "Git committer email: ${GIT_COMMIT_EMAIL}"
-
-
-                // sh "cat checkedup-stg-cms.json"
-                // sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json > checkedup-stg-cms.json"
-
-                // // sh "jq '.taskDefinition.revision = 123' checkedup-stg-cms.json"
-
-                // // sh "cat checkedup-stg-cms.json | jq 'del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt)  | del(.registeredBy)'"
-
-                
-                // sh "echo .................................................................."
-                // sh "cat checkedup-stg-cms.json"
-                // sh "ls"
-                // sh "pwd"
-                // sh "echo 222222222222222222222222222222222222222222222222222222222222222222"
-                // sh "cat ./checkedup-stg-cms.json"
-                // // sh "ls"
-                // // sh "pwd"
-                // // sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
-
-
-
-
-
-
-
-
-
-
-
-                // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
-                // sh "cat ./checkedup-stg-cms.json"
-                // TASK_DEFINITION = sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms"
-                // sh "echo ---------------------"
-                // sh "echo $TASK_DEFINITION"
-                // sh "echo $TASK_DEFINITION | jq '.containerDefinitions[0].image=123' > task-def.json"
-                // sh "ls"
-                // sh "pwd"
-                // sh "cat task-def.json"
-
-
-
-
-
-
-
-                //sh "aws ecs update-service --cluster checkedup-stg --service cms --force-new-deployment"
-
+                sh "aws ecs update-service --cluster checkedup-stg --service cms --force-new-deployment"
             }
         }
 
