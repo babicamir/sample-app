@@ -144,15 +144,18 @@ node {
                 
                 // sh "aws s3 ls"
                 sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
+                sh "cat checkedup-stg-cms.json"
+                sh "jq '.taskDefinition.taskDefinitionArn = ne' checkedup-stg-cms.json"
+                sh "cat checkedup-stg-cms.json"
                 // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
                 // sh "cat ./checkedup-stg-cms.json"
-                TASK_DEFINITION = sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms"
-                sh "echo ---------------------"
-                sh "echo $TASK_DEFINITION"
-                sh "echo $TASK_DEFINITION | jq '.containerDefinitions[0].image=123' > task-def.json"
-                sh "ls"
-                sh "pwd"
-                sh "cat task-def.json"
+                // TASK_DEFINITION = sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms"
+                // sh "echo ---------------------"
+                // sh "echo $TASK_DEFINITION"
+                // sh "echo $TASK_DEFINITION | jq '.containerDefinitions[0].image=123' > task-def.json"
+                // sh "ls"
+                // sh "pwd"
+                // sh "cat task-def.json"
 
 
 
