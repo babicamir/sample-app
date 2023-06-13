@@ -126,41 +126,43 @@ node {
             }
         }
 
-        else if (branchType && tag) {
-            stage('Build image2') {
-                docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
-                    app = docker.build("${image}:${tag}")
-                    app.push("${tag}")
-                    app.push("latest")
-                }
-            }
-        }
+        // else if (branchType && tag) {
+        //     stage('Build image2') {
+        //         docker.withRegistry('https://224768844765.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:stg') {
+        //             app = docker.build("${image}:${tag}")
+        //             app.push("${tag}")
+        //             app.push("latest")
+        //         }
+        //     }
+        // }
 
 
         stage('Docker login') {
             withAWS(credentials:'stg', region:'us-east-2') {
 
                 sh "echo Updating ECS service"
+
+                TASK_REVISION=`aws ecs describe-task-definition -- task-definition checkedup-stg-cms --region us-eaast-2 | egrep “revision” | tr “/” “ “ | awk ‘{print $2}’ | sed ‘s/”$//’`
                 
-                // sh "aws s3 ls"
-                sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
-                sh "cat checkedup-stg-cms.json"
-                sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json > checkedup-stg-cms.json"
+                // // sh "aws s3 ls"
+                // sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
+                // sh "cat checkedup-stg-cms.json"
+                // sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json > checkedup-stg-cms.json"
 
-                // sh "jq '.taskDefinition.revision = 123' checkedup-stg-cms.json"
+                // // sh "jq '.taskDefinition.revision = 123' checkedup-stg-cms.json"
 
-                // sh "cat checkedup-stg-cms.json | jq 'del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt)  | del(.registeredBy)'"
+                // // sh "cat checkedup-stg-cms.json | jq 'del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt)  | del(.registeredBy)'"
 
                 
-                sh "echo .................................................................."
-                sh "cat checkedup-stg-cms.json"
-                sh "ls"
-                sh "pwd"
-                sh "echo 222222222222222222222222222222222222222222222222222222222222222222"
-                sh "cat ./checkedup-stg-cms.json"
+                // sh "echo .................................................................."
+                // sh "cat checkedup-stg-cms.json"
                 // sh "ls"
                 // sh "pwd"
-                // sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
+                // sh "echo 222222222222222222222222222222222222222222222222222222222222222222"
+                // sh "cat ./checkedup-stg-cms.json"
+                // // sh "ls"
+                // // sh "pwd"
+                // // sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
 
 
 
