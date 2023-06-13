@@ -153,10 +153,6 @@ node {
 
 
 
-                aws ecs register-task-definition — family ${task-definition-name} — region=”ap-southeast-2" — cli-input-json file://task-def.json
-
-
-
                 // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
                 // sh "cat ./checkedup-stg-cms.json"
                 // TASK_DEFINITION = sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms"
