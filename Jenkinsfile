@@ -147,7 +147,7 @@ node {
                 // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
                 // sh "cat ./checkedup-stg-cms.json"
                 sh "TASK_DEFINITION=$(aws ecs describe-task-definition — task-definition checkedup-stg-cms)"
-                sh "echo $ TASK_DEFINITION | jq ‘.containerDefinitions[0].image=’\”${tag}\” \ > task-def.json"
+                sh "echo $ TASK_DEFINITION | jq '.containerDefinitions[0].image='\”${tag}\” \ > task-def.json"
 
 
 
