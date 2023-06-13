@@ -144,11 +144,15 @@ node {
                 
                 // sh "aws s3 ls"
                 sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
-                sh "AMIR=jq '.taskDefinition.revision' checkedup-stg-cms.json"
+                sh "jq .taskDefinition.revision checkedup-stg-cms.json"
                 // sh "ls"
                 // sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
  
-
+                GIT_COMMIT_EMAIL = sh (
+                    script: 'q .taskDefinition.revision checkedup-stg-cms.json',
+                    returnStdout: true
+                ).trim()
+                echo "Git committer email: ${GIT_COMMIT_EMAIL}"
 
 
                 // sh "cat checkedup-stg-cms.json"
