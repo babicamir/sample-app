@@ -145,15 +145,25 @@ node {
                 // sh "aws s3 ls"
                 sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
                 sh "cat checkedup-stg-cms.json"
-                // sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json"
+                sh "jq '.taskDefinition.containerDefinitions[0].image = 123' checkedup-stg-cms.json"
                 // sh "jq '.taskDefinition.revision = 123' checkedup-stg-cms.json"
 
-                sh "cat checkedup-stg-cms.json | jq 'del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt)  | del(.registeredBy)'"
+                // sh "cat checkedup-stg-cms.json | jq 'del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt)  | del(.registeredBy)'"
 
+                
+                sh "echo .................................................................."
                 sh "cat checkedup-stg-cms.json"
-                sh "ls"
-                sh "pwd"
-                sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
+                // sh "ls"
+                // sh "pwd"
+                // sh "aws ecs register-task-definition --family checkedup-stg-cms --cli-input-json file://checkedup-stg-cms.json"
+
+
+
+
+
+
+
+
 
 
 
