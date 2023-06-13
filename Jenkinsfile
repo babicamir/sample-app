@@ -141,11 +141,18 @@ node {
             withAWS(credentials:'stg', region:'us-east-2') {
 
                 sh "echo Updating ECS service"
-                sh "aws ecs update-service --cluster checkedup-stg --service cms --force-new-deployment"
+                
                 // sh "aws s3 ls"
-                // sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
+                sh "aws ecs describe-task-definition --task-definition checkedup-stg-cms > checkedup-stg-cms.json"
                 // sh "jq '.taskDefinition = "abcde"' checkedup-stg-cms.json|sponge checkedup-stg-cms.json"
                 // sh "cat ./checkedup-stg-cms.json"
+
+
+
+
+
+
+                //sh "aws ecs update-service --cluster checkedup-stg --service cms --force-new-deployment"
 
             }
         }
