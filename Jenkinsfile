@@ -148,10 +148,7 @@ node {
                 // sh "ls"
                 // sh "aws ecs register-task-definition --cli-input-json file://checkedup-stg-cms.json"
  
-                GIT_COMMIT_EMAIL = sh (
-                    script: 'jq .taskDefinition.revision checkedup-stg-cms.json',
-                    returnStdout: true
-                ).trim()
+                GIT_COMMIT_EMAIL = sh (script: 'jq .taskDefinition.revision checkedup-stg-cms.json')
                 echo "Git committer email: ${GIT_COMMIT_EMAIL}"
 
 
