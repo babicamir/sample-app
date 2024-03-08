@@ -54,8 +54,10 @@ workflows:
 
       - hold: # <<< A job that will require manual approval in the CircleCI web application.
           type: approval # T
-
-      - print-2-message:
           requires:
             - print-0-message
             - print-1-message
+
+      - print-2-message:
+          requires:
+            - hold
