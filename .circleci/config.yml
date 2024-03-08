@@ -2,29 +2,8 @@
 version: 2
 jobs:
   build:
-    working_directory: /tmp
+    docker:
+      - image: cimg/base:2022.09
     resource_class: small
     steps:
-      - run:
-          name: Creating Dummy Artifacts
-          command: |
-            echo "my artifact file" > /tmp/art-1;
-            mkdir /tmp/artifacts;
-            echo "my artifact files in a dir" > /tmp/artifacts/art-2;
-      - run:
-          name: ListFiles
-
-          command: |
-            ls;
-            pwd;
-
-
-
-      - store_artifacts:
-          path: /tmp/art-1
-          destination: artifact-file
-
-      - store_artifacts:
-          path: /tmp/artifacts
-
-
+      ... // other config
