@@ -9,8 +9,19 @@ jobs:
 
       - run: node --version
 
+  print-a-message:
+    docker:
+      - image: cimg/base:2022.03
+    parameters:
+      message:
+        type: string
+    steps:
+      - run: echo << parameters.message >>
+
+
 
 workflows:
   test_my_app:
     jobs:
       - install-node-example
+      - print-a-message
