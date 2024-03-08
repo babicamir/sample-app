@@ -3,6 +3,7 @@ version: 2
 jobs:
   build:
     working_directory: /tmp
+    resource_class: small
     steps:
       - run:
           name: Creating Dummy Artifacts
@@ -12,6 +13,7 @@ jobs:
             echo "my artifact files in a dir" > /tmp/artifacts/art-2;
       - run:
           name: ListFiles
+
           command: |
             ls;
             pwd;
