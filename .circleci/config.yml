@@ -20,9 +20,9 @@ jobs:
 
 
 
+
 workflows:
-  test_my_app:
+  my-workflow:
     jobs:
-      - install-node-example
-      - print-a-message
+      - print-a-message:
           message: Hello!
