@@ -25,3 +25,4 @@ workflows:
     jobs:
       - install-node-example
       - print-a-message
+          message: Hello!
