@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  install-node-example:
     docker:
       - image: circleci/node
     resource_class: small
@@ -10,7 +10,7 @@ jobs:
       - run: node --version
 
 
-# workflows:
-#   test_my_app:
-#     jobs:
-#       - install-node-example
+workflows:
+  test_my_app:
+    jobs:
+      - install-node-example
