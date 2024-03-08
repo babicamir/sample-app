@@ -25,6 +25,15 @@ jobs:
     steps:
       - run: echo 123
 
+      
+  print-1-message:
+    docker:
+      - image: cimg/base:2022.03
+
+    steps:
+      - run: echo 123
+
+
 workflows:
   build-test-and-deploy:
     jobs:
@@ -32,7 +41,7 @@ workflows:
       - print-0-message:
           requires:
             - install-node-example
-      - print-0-message:
+      - print-1-message:
           requires:
             - install-node-example
 
