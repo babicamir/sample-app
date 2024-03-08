@@ -18,11 +18,16 @@ jobs:
     steps:
       - run: echo << parameters.message >>
 
+  print-0-message:
+    docker:
+      - image: cimg/base:2022.03
 
-
+    steps:
+      - run: echo 123
 
 workflows:
-  my-workflow:
+  build-test-and-deploy:
     jobs:
-      - print-a-message:
-          message: Hello!
+      - install-node-example
+      - print-0-message
+ 
