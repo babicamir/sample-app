@@ -1,9 +1,18 @@
-
 version: 2
 jobs:
   build:
     docker:
-      - image: cimg/base:2022.09
+      - image: circleci/node
     resource_class: small
     steps:
-      ... // other config
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
+
+
+workflows:
+  test_my_app:
+    jobs:
+      - install-node-example
