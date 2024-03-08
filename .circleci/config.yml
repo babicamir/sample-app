@@ -33,6 +33,13 @@ jobs:
     steps:
       - run: echo 123
 
+  print-2-message:
+    docker:
+      - image: cimg/base:2022.03
+
+    steps:
+      - run: echo 123
+
 
 workflows:
   build-test-and-deploy:
@@ -45,5 +52,10 @@ workflows:
           requires:
             - install-node-example
 
+      - hold: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval # T
 
- 
+      - print-2-message:
+          requires:
+            - print-0-message
+            - print-1-message
