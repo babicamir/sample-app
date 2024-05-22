@@ -37,7 +37,7 @@ jobs:
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: ${{ env.image-repository }}
-        IMAGE_TAG: $GITHUB_RUN_NUMBER
+        IMAGE_TAG: ${GITHUB_RUN_NUMBER}
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
