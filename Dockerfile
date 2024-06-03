@@ -1,3 +1,5 @@
-FROM vad1mo/hello-world-rest
+FROM nginx:stable-alpine3.19
 
-EXPOSE 5050 5051 5052
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
