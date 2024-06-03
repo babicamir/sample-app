@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: 647692764445.dkr.ecr.eu-central-1.amazonaws.com/amir-dev-app:9
+        image: 647692764445.dkr.ecr.eu-central-1.amazonaws.com/amir-dev-app:latest
         ports:
         - containerPort: 80
