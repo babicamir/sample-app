@@ -46,7 +46,7 @@ jobs:
 
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$REPOSITORY:latest
-        export IMAGE_TAG=newsssssssssss-tag
+        export IMAGE_TAG=newsssssssssssssss
         echo $IMAGE_TAG
 
     - name: Update kube config
