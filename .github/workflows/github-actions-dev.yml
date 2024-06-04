@@ -46,7 +46,7 @@ jobs:
 
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$REPOSITORY:latest
-
+        export IMAGE_TAG=newsssssssssss-tag
 
     - name: Update kube config
       run: aws eks update-kubeconfig --name amir-dev-cluster
