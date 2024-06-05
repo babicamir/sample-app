@@ -2,10 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-deployment
-  namespace: amir
 spec:
   selector:
-    app: nginx-deployment
+    app: nginx
   ports:
     - protocol: TCP
       port: 80

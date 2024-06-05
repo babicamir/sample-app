@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: amir
   labels:
     app: nginx
 spec:
@@ -16,7 +15,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: 647692764445.dkr.ecr.eu-central-1.amazonaws.com/amir-dev-app:16
+      - name: app
+        image: app:latest
         ports:
         - containerPort: 80
