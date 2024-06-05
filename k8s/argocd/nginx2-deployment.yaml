@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx2-deployment
+  labels:
+    app: nginx2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx2
+  template:
+    metadata:
+      labels:
+        app: nginx2
+    spec:
+      containers:
+      - name: app
+        image: 647692764445.dkr.ecr.eu-central-1.amazonaws.com/amir-testing:latest
+        ports:
+        - containerPort: 80
