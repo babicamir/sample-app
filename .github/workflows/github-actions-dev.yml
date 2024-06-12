@@ -50,6 +50,9 @@ jobs:
         echo $REGISTRY
         echo $IMAGE_TAG
 
+    - name: Ckeck code
+      run: |
+        ls
 
     #     docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
     #     docker tag $REGISTRY/$REPOSITORY:$IMAGE_TAG $REGISTRY/$REPOSITORY:latest
