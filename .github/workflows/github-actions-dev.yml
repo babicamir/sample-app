@@ -1,13 +1,13 @@
 name: nginx app deploy to EKS
+
+
 on:
   push:
     branches: [ "dev" ]
   pull_request:
     branches: [ "dev" ]
-  tag:
-    types:
-     - created
-
+  tags:
+    - '*'
 
 
 env:
