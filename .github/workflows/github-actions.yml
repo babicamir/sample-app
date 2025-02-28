@@ -4,9 +4,9 @@ name: nginx app deploy to EKS
 on:
   push:
     branches: [ "main" ]
-    tags:
-     - '*'
 
+  release:
+    types: [released]
 
 env:
   project: amir
