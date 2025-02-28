@@ -9,7 +9,6 @@ on:
       - '*'
 
 
-
 env:
   project: amir
   env: stg
