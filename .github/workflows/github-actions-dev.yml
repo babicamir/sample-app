@@ -10,7 +10,7 @@ on:
     branches: [ "dev" ]
 
   release:
-    types: [published]
+    types: [published, created]
 
 env:
   project: amir
